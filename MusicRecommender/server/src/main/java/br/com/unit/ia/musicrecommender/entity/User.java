@@ -8,13 +8,14 @@ package br.com.unit.ia.musicrecommender.entity;
 import br.com.unit.ia.musicrecommender.persistence.UserPersistence;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import java.io.Serializable;
 
 /**
  *
  * @author Jonas
  */
 @DatabaseTable(daoClass = UserPersistence.class, tableName = "user")
-public class User {
+public class User implements Serializable{
 
     @DatabaseField(id = true)
     private String id;

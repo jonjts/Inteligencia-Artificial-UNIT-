@@ -27,6 +27,10 @@ public class GenericService<E> {
 
     private IControl<E> controle;
 
+    public IControl<E> getControle() {
+        return controle;
+    }
+
     public GenericService(IControl<E> controle) {
         this.controle = controle;
     }

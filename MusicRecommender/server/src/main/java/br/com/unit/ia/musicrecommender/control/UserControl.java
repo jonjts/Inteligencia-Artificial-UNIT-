@@ -7,6 +7,8 @@ package br.com.unit.ia.musicrecommender.control;
 
 import br.com.unit.ia.musicrecommender.entity.User;
 import br.com.unit.ia.musicrecommender.persistence.UserPersistence;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
@@ -46,6 +48,16 @@ public class UserControl implements IControl<User> {
     @Override
     public void update(User object) throws Exception {
         getPersistence().update(object);
+    }
+    
+    public Collection<User> getByCountry(User user, long limit) throws SQLException{
+        QueryBuilder<User, String> queryBuilder = getPersistence().queryBuilder();
+        Where<User, String> where = queryBuilder.where();
+        where.eq("country", user.getCountry());
+        where.ne("id", user.getRegistered());
+        queryBuilder.orderByRaw("RAND()");
+        queryBuilder.limit(limit);
+        return queryBuilder.query();
     }
 
 }
