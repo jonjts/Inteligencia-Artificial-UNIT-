@@ -5,17 +5,15 @@
  */
 package br.com.unit.ia.musicrecommender.entity;
 
-import br.com.unit.ia.musicrecommender.persistence.UserPersistence;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import java.io.Serializable;
 
 /**
  *
  * @author Jonas
  */
-@DatabaseTable(daoClass = UserPersistence.class, tableName = "user")
-public class User implements Serializable {
+@DatabaseTable(tableName = "tag")
+public class Tag {
 
     @DatabaseField(id = true)
     private Long id;
@@ -23,7 +21,12 @@ public class User implements Serializable {
     @DatabaseField
     private String name;
 
-    public User() {
+    public Tag(Long id) {
+        super();
+        this.id = id;
+    }
+
+    public Tag() {
         super();
     }
 
@@ -43,4 +46,10 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+       Tag t = (Tag) obj;
+        return t.getId() == this.getId();
+    }
+    
 }

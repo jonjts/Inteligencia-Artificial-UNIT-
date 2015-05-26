@@ -40,24 +40,17 @@ public class UserControl implements IControl<User> {
     }
 
     @Override
-    public void delete(Object id) throws Exception {
-        String s = (String) id;
-        getPersistence().deleteById(s);
+    public void delete(Number id) throws Exception {
+        getPersistence().deleteById(id.longValue());
     }
 
     @Override
     public void update(User object) throws Exception {
         getPersistence().update(object);
     }
-    
-    public Collection<User> getByCountry(User user, long limit) throws SQLException{
-        QueryBuilder<User, String> queryBuilder = getPersistence().queryBuilder();
-        Where<User, String> where = queryBuilder.where();
-        where.eq("country", user.getCountry());
-        where.ne("id", user.getRegistered());
-        queryBuilder.orderByRaw("RAND()");
-        queryBuilder.limit(limit);
-        return queryBuilder.query();
-    }
 
+    @Override
+    public User get(Number id) throws Exception {
+        return getPersistence().findById(id.longValue());
+    }
 }

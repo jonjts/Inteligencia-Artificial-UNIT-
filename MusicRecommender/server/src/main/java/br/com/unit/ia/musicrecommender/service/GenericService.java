@@ -23,22 +23,22 @@ import javax.ws.rs.core.Response;
  */
 @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
 @Consumes(MediaType.APPLICATION_JSON+ ";charset=UTF-8")
-public class GenericService<E> {
+public abstract class GenericService<E> {
 
-    private IControl<E> controle;
+    private IControl<E> control;
 
-    public IControl<E> getControle() {
-        return controle;
+    public IControl<E> getControl() {
+        return control;
     }
 
     public GenericService(IControl<E> controle) {
-        this.controle = controle;
+        this.control = controle;
     }
 
     @GET
     public Response getAll() {
         try {
-            return Response.ok(controle.getAll()).build();
+            return Response.ok(control.getAll()).build();
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e).build();
         }
@@ -47,7 +47,7 @@ public class GenericService<E> {
     @PUT
     public Response put(E object){
         try {
-            return Response.ok(controle.insert(object)).build();
+            return Response.ok(control.insert(object)).build();
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e).build();
         }
@@ -56,7 +56,7 @@ public class GenericService<E> {
     @POST
     public Response post(E object){
         try {
-            controle.update(object);
+            control.update(object);
             return Response.ok().build();
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e).build();
@@ -67,7 +67,7 @@ public class GenericService<E> {
     @Path("{id}")
     public Response delete(@PathParam("id") Long id){
         try {
-            controle.delete(id);
+            control.delete(id);
             return Response.ok().build();
         } catch (Exception e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e).build();

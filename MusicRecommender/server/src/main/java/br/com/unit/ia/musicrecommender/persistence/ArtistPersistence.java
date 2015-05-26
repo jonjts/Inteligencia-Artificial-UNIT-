@@ -5,18 +5,17 @@
  */
 package br.com.unit.ia.musicrecommender.persistence;
 
-import br.com.unit.ia.musicrecommender.entity.User;
-import com.j256.ormlite.support.ConnectionSource;
+import br.com.unit.ia.musicrecommender.entity.Artist;
 import java.sql.SQLException;
 
 /**
  *
  * @author Jonas
  */
-public class UserPersistence extends GenericPersistence<User, Long> {
+public class ArtistPersistence extends GenericPersistence<Artist, Long>{
 
-    public UserPersistence() throws SQLException {
-        super(Persistencia.instance().getConnectionSource(), User.class);
+    public ArtistPersistence() throws SQLException {
+     super(Persistencia.instance().getConnectionSource(), Artist.class);
     }
-
+    
 }

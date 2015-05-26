@@ -19,7 +19,9 @@ public interface IControl<E> {
     
     public Collection<E> getAll() throws Exception;
     
-    public void delete(Object id) throws Exception;
+    public void delete(Number id) throws Exception;
     
     public void update(E object) throws Exception;
+    
+    public E get(Number id) throws Exception;
 }
