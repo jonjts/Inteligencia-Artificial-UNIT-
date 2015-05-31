@@ -5,6 +5,8 @@
  */
 package br.com.unit.ia.musicrecommender.control;
 
+import br.com.unit.ia.musicrecommender.algorithm.Algorithm;
+import br.com.unit.ia.musicrecommender.entity.Song;
 import br.com.unit.ia.musicrecommender.entity.User;
 import br.com.unit.ia.musicrecommender.persistence.UserPersistence;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -20,6 +22,7 @@ import java.util.List;
 public class UserControl implements IControl<User> {
 
     private UserPersistence persistence;
+    private Algorithm algorithm;
 
     public UserPersistence getPersistence() throws SQLException {
         if (persistence == null) {
@@ -52,5 +55,16 @@ public class UserControl implements IControl<User> {
     @Override
     public User get(Number id) throws Exception {
         return getPersistence().findById(id.longValue());
+    }
+    
+    public User getByName(User user) throws SQLException{
+        QueryBuilder<User, Long> queryBuilder = getPersistence().queryBuilder();
+        queryBuilder.where().eq("name", user.getName());
+        return queryBuilder.queryForFirst();
+    }
+    
+    public List<Song> getRecomedation(User user, int limitSongs) throws SQLException{
+        algorithm = new Algorithm(user, limitSongs);
+        return algorithm.doTheMagic();
     }
 }

@@ -7,13 +7,14 @@ package br.com.unit.ia.musicrecommender.entity;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import java.io.Serializable;
 
 /**
  *
  * @author Jonas
  */
 @DatabaseTable(tableName = "song")
-public class Song {
+public class Song implements Serializable{
 
     @DatabaseField(id = true)
     private Long id;
