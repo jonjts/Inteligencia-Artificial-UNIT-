@@ -72,16 +72,23 @@ public class Algorithm {
                 for (User user : users) {
                     Song song = songControl.get(user);
                     songs.add(song);
-                    if (songs.size() == limitSong) {
+                    if (isInTheLimit(songs)) {
                         break;
                     }
                 }
-                if (songs.size() == limitSong) {
+                if (isInTheLimit(songs)) {
                     break;
                 }
             }
         }
         return songs;
+    }
+
+    private boolean isInTheLimit(List<Song> songs) {
+        if (songs.size() == limitSong) {
+            return true;
+        }
+        return false;
     }
 
     private void sortRandomUsers() {
