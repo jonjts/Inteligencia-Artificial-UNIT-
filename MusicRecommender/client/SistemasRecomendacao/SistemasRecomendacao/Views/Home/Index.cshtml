@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Início";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                Olá, esse sistema tem como finalidade gerar uma playlist utilizando a base do LastFm, a partir dos usuários que tem maior similaridade com o usuário logado.
+            </p>
+        </div>
+    </section>
+}
+<h3>Como funciona o sistema:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>O algoritmo:</h5>
+        O algoritmo de recomendação utilizado é um algoritmo que é da categoria das "Recomendações Colaborativas". 
+        Ou seja as recomendações irão surgir a partir de gostos similares entre os usuários.
+    </li>
+
+    <li class="two">
+        <h5>Como é feito esse cálculo de similaridade:</h5>
+        O cálculo é feito a partir das tags(classificação ou gênero) que o usuário logado deu em diversos artistas.
+        A partir dai nosso algoritmo irá buscar os usuários que também utilizaram essas tags e para quais artistas.
+        Com isso fazemos uma análise e chegamos aos usuário que tem mais similaridade.
+    </li>
+
+    <li class="three">
+        <h5>"Ta e as músicas?"</h5>
+        Bom, após encontrar os usuários que possuem mais similaridade, nós pegamos algumas músicas das tags que ambos gostam e montamos a playlist!
+    </li>
+</ol>

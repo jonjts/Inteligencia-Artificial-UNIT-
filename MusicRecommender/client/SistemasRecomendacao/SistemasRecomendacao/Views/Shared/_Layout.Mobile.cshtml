@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - LastFM Playlist recommendation</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/Mobilecss")
+        @Scripts.Render("~/bundles/Mobilejs")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div data-role="page" data-theme="a">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1>@ViewBag.Title</h1>
+                <div data-role="navbar" data-theme="a" data-iconpos="top">
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Home")" data-icon="home">Home</a></li>
+                        <li><a href="@Url.Action("About", "Home")" data-icon="check">Sobre</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")" data-icon="check">Contato</a></li>
+                        <li><a href="@Url.Action("LoginMobile", "Home")" data-icon="check">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                @RenderSection("featured", false)
+                @RenderBody()
+            </div>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - LastFM Playlist recommendation</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

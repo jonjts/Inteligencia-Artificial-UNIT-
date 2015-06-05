@@ -1,0 +1,50 @@
+﻿@model SistemasRecomendacao.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+@using (Html.BeginForm("GerarPlayList", "Home"))
+{
+    <div>
+        <fieldset>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.UserName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.UserName)
+                @Html.ValidationMessageFor(u => u.UserName)
+            </div>
+            <input type="submit" id="btnLogin" value="Log In"/>
+        </fieldset>
+    </div>
+}
+@*@section Scripts {
+    <script>
+        $('#btnLogin').click(function () {
+            $.ajax({
+                url: '@Url.Action("GerarPlayList", "Home")',
+                contentType: 'application/html; charset=utf-8',
+                type: 'POST',
+                data: { 'userName': UserName.value },
+                dataType: 'json'
+
+            })
+            .success(function (result) {
+                alert(result.data);
+            })
+            .error(function (xhr, status) {
+                alert(status);
+            })
+        });
+    </script>
+}*@

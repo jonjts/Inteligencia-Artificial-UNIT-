@@ -1,0 +1,17 @@
+﻿@model SistemasRecomendacao.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+        <hgroup class="title">
+            <h1>@ViewBag.Title</h1>
+        </hgroup>
+    </div>
+    <div class="ui-block-b">
+        <a class="ui-btn ui-btn" style="color:blue" data-role="button"
+           href="@Url.Action("CategoryWiseProducts", "Product")">Category wise Products</a>
+    </div>
+</div>
